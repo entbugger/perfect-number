@@ -17,9 +17,12 @@ class PerfectNumberApplicationTests {
     private TestRestTemplate restTemplate;
 
     @Test
-    void isCheckNumberEndpointReachable() {
+    void checksPerfectNumber() {
         Boolean result = restTemplate.getForObject("http://localhost:" + port + "/perfect-number/check?number=2", Boolean.class);
         assertThat(result).isEqualTo(false);
+        result = restTemplate.getForObject("http://localhost:" + port + "/perfect-number/check?number=28", Boolean.class);
+        assertThat(result).isEqualTo(true);
+    }
     }
 
 }
