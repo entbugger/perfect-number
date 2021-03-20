@@ -14,8 +14,9 @@ class PerfectNumberServiceTest {
 
     @Test
     void detectsNumberIsPerfect() {
-        List<Integer> firstPerfectNumbers = Arrays.asList(6, 28, 496, 8128, 33550336);
-        for (Integer i : firstPerfectNumbers) {
+        List<Long> firstPerfectNumbers = Arrays.asList(6L, 28L, 496L, 8128L, 33550336L, 8589869056L,
+            137438691328L, 2305843008139952128L);
+        for (Long i : firstPerfectNumbers) {
             assertTrue(service.isPerfectNumber(i), i + "is a valid perfect number");
         }
     }

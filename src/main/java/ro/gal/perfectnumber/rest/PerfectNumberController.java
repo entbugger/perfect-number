@@ -19,7 +19,7 @@ public class PerfectNumberController {
     }
 
     @RequestMapping("/check")
-    public @ResponseBody boolean checkNumber(@RequestParam("number") int number) {
+    public @ResponseBody boolean checkNumber(@RequestParam("number") long number) {
         return service.isPerfectNumber(number);
     }
 }

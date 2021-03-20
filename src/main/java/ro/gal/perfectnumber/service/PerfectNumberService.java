@@ -10,7 +10,7 @@ public class PerfectNumberService {
      *
      * Implementation: iterate only to sqrt(number) and add all divisors
      */
-    public boolean isPerfectNumber(int number) {
+    public boolean isPerfectNumber(long number) {
         if (number<0) {
             throw new IllegalArgumentException("Number must be positive");
         }
