@@ -18,7 +18,7 @@ public class PerfectNumberService {
             return false;
         }
         int sumOfDividers = 1;
-        for (int i=2; i*i<=number; i++) {
+        for (long i=2; i*i<=number; i++) {
             if (number%i == 0) {
                 sumOfDividers += i;//add divisor
                 sumOfDividers += number / i;//add the other divisor
