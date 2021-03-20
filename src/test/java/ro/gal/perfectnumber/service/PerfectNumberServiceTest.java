@@ -2,6 +2,9 @@ package ro.gal.perfectnumber.service;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -11,8 +14,10 @@ class PerfectNumberServiceTest {
 
     @Test
     void detectsNumberIsPerfect() {
-        assertTrue(service.isPerfectNumber(6), "6 is a valid perfect number");
-        assertTrue(service.isPerfectNumber(28), "28 is a valid perfect number");
+        List<Integer> firstPerfectNumbers = Arrays.asList(6, 28, 496, 8128, 33550336);
+        for (Integer i : firstPerfectNumbers) {
+            assertTrue(service.isPerfectNumber(i), i + "is a valid perfect number");
+        }
     }
 
     @Test
