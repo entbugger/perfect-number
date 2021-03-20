@@ -39,12 +39,13 @@ public class PerfectNumberService {
     }
 
     /**
-     * Generates perfect numbers between start and end (bigger or equal than start and strictly smaller than end).
-     * Uses Euclid–Euler theorem.
+     * Generates perfect numbers between start and end (bigger or equal than 'start' and strictly smaller than 'end').
+     * Uses Euclid–Euler theorem: an even perfect number is of form (2^p-1)*2^(p-1) where (2^p-1) is prime.
      */
     public List<Long> generatePerfectNumbers(long start, long end) {
         List<Long> result = new ArrayList<>();
-        for (long p : primeNumberService.generatePrimeNumbers(end)) {
+        long maxPrimeNumberToCheck = (long) Math.ceil((log(2, end) + 1) / 2)+1;
+        for (long p : primeNumberService.generatePrimeNumbers(maxPrimeNumberToCheck)) {
             if (primeNumberService.isPrimeNumber(pow(2, p) - 1)) {
                 long perfectNumber = pow(2, p - 1) * (pow(2, p) - 1);
                 if (perfectNumber >= start && perfectNumber < end) {
@@ -58,6 +59,10 @@ public class PerfectNumberService {
 
     private long pow(long base, long exponent) {
         return (long)Math.pow(base, exponent);
+    }
+
+    private double log(long base, long num) {
+        return Math.log(num) / Math.log(base);
     }
 
 }
