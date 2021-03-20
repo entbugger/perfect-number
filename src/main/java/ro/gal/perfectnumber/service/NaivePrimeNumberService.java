@@ -2,6 +2,7 @@ package ro.gal.perfectnumber.service;
 
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -29,7 +30,14 @@ public class NaivePrimeNumberService implements PrimeNumberService {
         return true;
     }
 
-    public List<Long> generatePrimeNumbers() {
-        return Arrays.asList(2L, 3L, 5L, 7L, 11L, 13L, 17L, 19L, 23L, 29L);
+    public List<Long> generatePrimeNumbers(long max) {
+        List<Long> results = new ArrayList<>();
+        for (long i=2; i<max; i++) {
+            if (isPrimeNumber(i)) {
+                results.add(i);
+            }
+        }
+
+        return results;
     }
 }

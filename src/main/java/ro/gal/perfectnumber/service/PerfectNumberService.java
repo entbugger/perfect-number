@@ -44,7 +44,7 @@ public class PerfectNumberService {
      */
     public List<Long> generatePerfectNumbers(long start, long end) {
         List<Long> result = new ArrayList<>();
-        for (long p : primeNumberService.generatePrimeNumbers()) {
+        for (long p : primeNumberService.generatePrimeNumbers(end)) {
             if (primeNumberService.isPrimeNumber(pow(2, p) - 1)) {
                 long perfectNumber = pow(2, p - 1) * (pow(2, p) - 1);
                 if (perfectNumber >= start && perfectNumber < end) {
