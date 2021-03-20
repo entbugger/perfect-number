@@ -1,5 +1,6 @@
 package ro.gal.perfectnumber.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -10,8 +11,9 @@ public class PerfectNumberService {
 
     private final PrimeNumberService primeNumberService;
 
-    public PerfectNumberService() {
-        this.primeNumberService = new PrimeNumberService();
+    @Autowired
+    public PerfectNumberService(PrimeNumberService primeNumberService) {
+        this.primeNumberService = primeNumberService;
     }
 
     /**

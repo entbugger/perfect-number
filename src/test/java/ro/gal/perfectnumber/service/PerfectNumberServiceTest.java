@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class PerfectNumberServiceTest {
 
-    private final PerfectNumberService service = new PerfectNumberService();
+    private final PerfectNumberService service = new PerfectNumberService(new NaivePrimeNumberService());
 
     @Test
     void detectsNumberIsPerfect() {
