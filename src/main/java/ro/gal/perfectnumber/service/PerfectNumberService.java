@@ -14,6 +14,9 @@ public class PerfectNumberService {
         if (number<0) {
             throw new IllegalArgumentException("Number must be positive");
         }
+        if (number % 2 != 0) {//odd numbers are never perfect
+            return false;
+        }
         int sumOfDividers = 1;
         for (int i=2; i*i<=number; i++) {
             if (number%i == 0) {
