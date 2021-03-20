@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import ro.gal.perfectnumber.service.PerfectNumberService;
 
+import java.util.List;
+
 @Controller
 @RequestMapping(value = "/perfect-number")
 public class PerfectNumberController {
@@ -21,5 +23,11 @@ public class PerfectNumberController {
     @RequestMapping("/check")
     public @ResponseBody boolean checkNumber(@RequestParam("number") long number) {
         return service.isPerfectNumber(number);
+    }
+
+    @RequestMapping("/generate")
+    public @ResponseBody
+    List<Long> generatePerfectNumbers(@RequestParam("start") long start, @RequestParam("end") long end) {
+        return service.generatePerfectNumbers(start, end);
     }
 }

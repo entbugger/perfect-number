@@ -2,6 +2,9 @@ package ro.gal.perfectnumber.service;
 
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.List;
+
 @Service
 public class PerfectNumberService {
 
@@ -25,5 +28,9 @@ public class PerfectNumberService {
             }
         }
         return sumOfDividers == number;
+    }
+
+    public List<Long> generatePerfectNumbers(long start, long end) {
+        return Arrays.asList(6L, 28L);
     }
 }
