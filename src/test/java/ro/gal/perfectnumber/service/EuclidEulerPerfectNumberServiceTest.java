@@ -2,6 +2,7 @@ package ro.gal.perfectnumber.service;
 
 import org.junit.jupiter.api.Test;
 
+import java.math.BigInteger;
 import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -17,14 +18,14 @@ class EuclidEulerPerfectNumberServiceTest {
         List<Long> firstPerfectNumbers = Arrays.asList(6L, 28L, 496L, 8128L, 33550336L, 8589869056L,
             137438691328L, 2305843008139952128L);
         for (Long i : firstPerfectNumbers) {
-            assertTrue(service.isPerfectNumber(i), i + "is a valid perfect number");
+            assertTrue(service.isPerfectNumber(BigInteger.valueOf(i)), i + "is a valid perfect number");
         }
     }
 
     @Test
     void detectsNumberIsNotPerfect() {
-        assertFalse(service.isPerfectNumber(7), "7 is not perfect number");
-        assertFalse(service.isPerfectNumber(10), "10 is not perfect number");
+        assertFalse(service.isPerfectNumber(BigInteger.valueOf(7)), "7 is not perfect number");
+        assertFalse(service.isPerfectNumber(BigInteger.valueOf(10)), "10 is not perfect number");
     }
 
     @Test

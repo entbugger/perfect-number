@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import ro.gal.perfectnumber.service.PerfectNumberService;
 
+import java.math.BigInteger;
 import java.util.List;
 
 @Controller
@@ -21,7 +22,7 @@ public class PerfectNumberController {
     }
 
     @RequestMapping("/check")
-    public @ResponseBody boolean checkNumber(@RequestParam("number") long number) {
+    public @ResponseBody boolean checkNumber(@RequestParam("number") BigInteger number) {
         return service.isPerfectNumber(number);
     }
 

@@ -3,8 +3,12 @@ package ro.gal.perfectnumber.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+
+import static java.math.BigInteger.ONE;
+import static java.math.BigInteger.ZERO;
 
 /**
  * Uses the Euclid-Euler theorem to check if a number is perfect and for generation of perfect numbers.
@@ -12,6 +16,7 @@ import java.util.List;
 @Service
 public class EuclidEulerPerfectNumberService implements PerfectNumberService {
 
+    private static final BigInteger TWO = BigInteger.valueOf(2);
     private final PrimeNumberService primeNumberService;
 
     @Autowired
@@ -24,22 +29,22 @@ public class EuclidEulerPerfectNumberService implements PerfectNumberService {
      *
      */
     @Override
-    public boolean isPerfectNumber(long number) {
-        if (number<0) {
+    public boolean isPerfectNumber(BigInteger number) {
+        if (number.signum()<0) {
             throw new IllegalArgumentException("Number must be positive");
         }
-        if (number % 2 != 0) {//there are no known perfect numbers that are odd
+        if (!isEven(number)) {//there are no known perfect numbers that are odd
             return false;
         }
         //an even number is perfect iff it is of form (2^p-1)*2^(p-1) where (2^p-1) is prime
         int p = 0;//find out p-1
-        long tmp = number;
-        while (tmp%2 == 0) {
-            tmp = tmp / 2;
+        BigInteger tmp = number;
+        while (isEven(tmp)) {
+            tmp = tmp.divide(TWO);
             p++;
         }
         p++;//we need p, not p-1
-        return number == pow(2, p - 1) * (pow(2, p) - 1)
+        return number.equals(TWO.pow(p - 1).multiply(TWO.pow(p).subtract(ONE)))
             && primeNumberService.isPrimeNumber(pow(2, p)-1);
     }
 
@@ -71,4 +76,7 @@ public class EuclidEulerPerfectNumberService implements PerfectNumberService {
         return Math.log(num) / Math.log(base);
     }
 
+    private boolean isEven(BigInteger n) {
+        return ZERO.equals(n.remainder(TWO));
+    }
 }
