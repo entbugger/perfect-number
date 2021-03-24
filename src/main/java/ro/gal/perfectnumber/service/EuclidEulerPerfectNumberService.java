@@ -6,6 +6,9 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Uses the Euclid-Euler theorem to check if a number is perfect and for generation of perfect numbers.
+ */
 @Service
 public class EuclidEulerPerfectNumberService implements PerfectNumberService {
 
@@ -19,24 +22,25 @@ public class EuclidEulerPerfectNumberService implements PerfectNumberService {
     /**
      * Checks whether a number is perfect.
      *
-     * Implementation: iterate only to sqrt(number) and add all divisors
      */
     @Override
     public boolean isPerfectNumber(long number) {
         if (number<0) {
             throw new IllegalArgumentException("Number must be positive");
         }
-        if (number % 2 != 0) {//odd numbers are never perfect
+        if (number % 2 != 0) {//there are no known perfect numbers that are odd
             return false;
         }
-        int sumOfDividers = 1;
-        for (long i=2; i*i<=number; i++) {
-            if (number%i == 0) {
-                sumOfDividers += i;//add divisor
-                sumOfDividers += number / i;//add the other divisor
-            }
+        //an even number is perfect iff it is of form (2^p-1)*2^(p-1) where (2^p-1) is prime
+        int p = 0;//find out p-1
+        long tmp = number;
+        while (tmp%2 == 0) {
+            tmp = tmp / 2;
+            p++;
         }
-        return sumOfDividers == number;
+        p++;//we need p, not p-1
+        return number == pow(2, p - 1) * (pow(2, p) - 1)
+            && primeNumberService.isPrimeNumber(pow(2, p)-1);
     }
 
     /**

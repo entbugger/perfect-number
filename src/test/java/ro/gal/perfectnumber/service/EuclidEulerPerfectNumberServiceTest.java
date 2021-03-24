@@ -2,8 +2,7 @@ package ro.gal.perfectnumber.service;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -15,8 +14,8 @@ class EuclidEulerPerfectNumberServiceTest {
 
     @Test
     void detectsNumberIsPerfect() {
-        List<Long> firstPerfectNumbers = Arrays.asList(6L, 28L, 496L, 8128L, 33550336L/*, 8589869056L,
-            137438691328L, 2305843008139952128L*/);
+        List<Long> firstPerfectNumbers = Arrays.asList(6L, 28L, 496L, 8128L, 33550336L, 8589869056L,
+            137438691328L, 2305843008139952128L);
         for (Long i : firstPerfectNumbers) {
             assertTrue(service.isPerfectNumber(i), i + "is a valid perfect number");
         }
