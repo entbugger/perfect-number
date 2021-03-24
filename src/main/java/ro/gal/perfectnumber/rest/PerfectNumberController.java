@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import ro.gal.perfectnumber.service.EuclidEulerPerfectNumberService;
+import ro.gal.perfectnumber.service.PerfectNumberService;
 
 import java.util.List;
 
@@ -13,10 +13,10 @@ import java.util.List;
 @RequestMapping(value = "/perfect-number")
 public class PerfectNumberController {
 
-    private final EuclidEulerPerfectNumberService service;
+    private final PerfectNumberService service;
 
     @Autowired
-    public PerfectNumberController(EuclidEulerPerfectNumberService service) {
+    public PerfectNumberController(PerfectNumberService service) {
         this.service = service;
     }
 

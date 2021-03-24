@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class EuclidEulerPerfectNumberService {
+public class EuclidEulerPerfectNumberService implements PerfectNumberService {
 
     private final PrimeNumberService primeNumberService;
 
@@ -21,6 +21,7 @@ public class EuclidEulerPerfectNumberService {
      *
      * Implementation: iterate only to sqrt(number) and add all divisors
      */
+    @Override
     public boolean isPerfectNumber(long number) {
         if (number<0) {
             throw new IllegalArgumentException("Number must be positive");
@@ -42,6 +43,7 @@ public class EuclidEulerPerfectNumberService {
      * Generates perfect numbers between start and end (bigger or equal than 'start' and strictly smaller than 'end').
      * Uses Euclid–Euler theorem: an even perfect number is of form (2^p-1)*2^(p-1) where (2^p-1) is prime.
      */
+    @Override
     public List<Long> generatePerfectNumbers(long start, long end) {
         List<Long> result = new ArrayList<>();
         long maxPrimeNumberToCheck = (long) Math.ceil((log(2, end) + 1) / 2)+1;
