@@ -9,9 +9,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class PerfectNumberServiceTest {
+class EuclidEulerPerfectNumberServiceTest {
 
-    private final PerfectNumberService service = new PerfectNumberService(new NaivePrimeNumberService());
+    private final EuclidEulerPerfectNumberService service = new EuclidEulerPerfectNumberService(new NaivePrimeNumberService());
 
     @Test
     void detectsNumberIsPerfect() {
