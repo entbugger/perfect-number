@@ -6,33 +6,25 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.math.BigInteger.ZERO;
-import static java.math.BigInteger.valueOf;
+import static java.math.BigInteger.*;
 
 @Component
 public class NaivePrimeNumberService implements PrimeNumberService {
-    private static final BigInteger TWO = valueOf(2);
+
     private static final BigInteger THREE = valueOf(3);
-    private static final BigInteger FIVE = valueOf(5);
-    private static final BigInteger SIX = valueOf(6);
+
     public boolean isPrimeNumber(BigInteger num) {
-        if(num.compareTo(BigInteger.ONE) <= 0) {
+        if(num.compareTo(ONE) <= 0) {
             return false;
         }
         if(num.compareTo(THREE) <= 0) {
             return true;
         }
 
-        if(isDivisibleBy(num, TWO) || isDivisibleBy(num, THREE))  {
+        if(isDivisibleBy(num, TWO) || isDivisibleBy(num, THREE)) {
             return false;
         }
-
-        for(BigInteger i=FIVE; i.multiply(i).compareTo(num)<=0; i=i.add(SIX))
-            if(isDivisibleBy(num, i) || isDivisibleBy(num, i.add(TWO))) {
-                return false;
-            }
-
-        return true;
+        return new PrimalityTestTask(num).compute();
     }
 
     public List<Long> generatePrimeNumbers(long min, long max) {
