@@ -28,7 +28,7 @@ public class PerfectNumberController {
 
     @RequestMapping("/generate")
     public @ResponseBody
-    List<Long> generatePerfectNumbers(@RequestParam("start") long start, @RequestParam("end") long end) {
+    List<BigInteger> generatePerfectNumbers(@RequestParam("start") BigInteger start, @RequestParam("end") BigInteger end) {
         return service.generatePerfectNumbers(start, end);
     }
 }

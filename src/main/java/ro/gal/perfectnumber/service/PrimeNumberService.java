@@ -1,10 +1,11 @@
 package ro.gal.perfectnumber.service;
 
+import java.math.BigInteger;
 import java.util.List;
 
 public interface PrimeNumberService {
 
-    boolean isPrimeNumber(long num);
+    boolean isPrimeNumber(BigInteger num);
 
     List<Long> generatePrimeNumbers(long max);
 }

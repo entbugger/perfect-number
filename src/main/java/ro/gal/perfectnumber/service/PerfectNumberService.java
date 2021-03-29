@@ -5,5 +5,5 @@ import java.util.List;
 
 public interface PerfectNumberService {
     boolean isPerfectNumber(BigInteger number);
-    List<Long> generatePerfectNumbers(long start, long end);
+    List<BigInteger> generatePerfectNumbers(BigInteger start, BigInteger end);
 }

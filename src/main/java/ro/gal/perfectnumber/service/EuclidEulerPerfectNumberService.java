@@ -45,21 +45,21 @@ public class EuclidEulerPerfectNumberService implements PerfectNumberService {
         }
         p++;//we need p, not p-1
         return number.equals(TWO.pow(p - 1).multiply(TWO.pow(p).subtract(ONE)))
-            && primeNumberService.isPrimeNumber(pow(2, p)-1);
+            && primeNumberService.isPrimeNumber(TWO.pow(p).subtract(ONE));
     }
 
     /**
-     * Generates perfect numbers between start and end (bigger or equal than 'start' and strictly smaller than 'end').
+     * Generates perfect numbers between 'start' and 'end' (bigger or equal than 'start' and strictly smaller than 'end').
      * Uses Euclid–Euler theorem: an even perfect number is of form (2^p-1)*2^(p-1) where (2^p-1) is prime.
      */
     @Override
-    public List<Long> generatePerfectNumbers(long start, long end) {
-        List<Long> result = new ArrayList<>();
-        long maxPrimeNumberToCheck = (long) Math.ceil((log(2, end) + 1) / 2)+1;
+    public List<BigInteger> generatePerfectNumbers(BigInteger start, BigInteger end) {
+        List<BigInteger> result = new ArrayList<>();
+        long maxPrimeNumberToCheck = (long) Math.ceil((log(2, end) + 1) / 2) + 1;
         for (long p : primeNumberService.generatePrimeNumbers(maxPrimeNumberToCheck)) {
-            if (primeNumberService.isPrimeNumber(pow(2, p) - 1)) {
-                long perfectNumber = pow(2, p - 1) * (pow(2, p) - 1);
-                if (perfectNumber >= start && perfectNumber < end) {
+            if (primeNumberService.isPrimeNumber(TWO.pow((int)p).subtract(ONE))) {
+                BigInteger perfectNumber = TWO.pow((int)p - 1) .multiply(TWO.pow((int)p).subtract(ONE));
+                if (perfectNumber.compareTo(start) >= 0 && perfectNumber.compareTo(end) < 0) {
                     result.add(perfectNumber);
                 }
             }
@@ -68,12 +68,8 @@ public class EuclidEulerPerfectNumberService implements PerfectNumberService {
         return result;
     }
 
-    private long pow(long base, long exponent) {
-        return (long)Math.pow(base, exponent);
-    }
-
-    private double log(long base, long num) {
-        return Math.log(num) / Math.log(base);
+    private double log(int base, BigInteger num) {
+        return Math.log(num.doubleValue()) / Math.log(base);
     }
 
     private boolean isEven(BigInteger n) {
