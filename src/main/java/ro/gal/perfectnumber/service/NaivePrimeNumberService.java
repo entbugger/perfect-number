@@ -12,6 +12,7 @@ import static java.math.BigInteger.*;
 public class NaivePrimeNumberService implements PrimeNumberService {
 
     private static final BigInteger THREE = valueOf(3);
+    private static final BigInteger FIVE = valueOf(5);
 
     public boolean isPrimeNumber(BigInteger num) {
         if(num.compareTo(ONE) <= 0) {
@@ -24,7 +25,7 @@ public class NaivePrimeNumberService implements PrimeNumberService {
         if(isDivisibleBy(num, TWO) || isDivisibleBy(num, THREE)) {
             return false;
         }
-        return new PrimalityTestTask(num).compute();
+        return new PrimalityTestTask(num, FIVE, num.sqrt().add(ONE)).compute();
     }
 
     public List<Long> generatePrimeNumbers(long min, long max) {

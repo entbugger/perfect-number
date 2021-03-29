@@ -19,7 +19,6 @@ public class PrimalityTestTask extends RecursiveTask<Boolean> {
 
     private static final BigInteger TWO = valueOf(2);
 
-    private static final BigInteger FIVE = valueOf(5);
     private static final BigInteger SIX = valueOf(6);
 
     private static final BigInteger PRIME_STEP = SIX;
@@ -30,13 +29,13 @@ public class PrimalityTestTask extends RecursiveTask<Boolean> {
     private final BigInteger minDivisor;
     private final AtomicBoolean isPrime;
 
-    public PrimalityTestTask(BigInteger num) {
-        this(num, FIVE, num.sqrt().add(ONE), new AtomicBoolean(true));
-    }
-
     /**
      * Checks whether 'num' divides any numbers between 'minDivisor' (incl.) and 'maxDivisor' (excl.).
      */
+    PrimalityTestTask(BigInteger num, BigInteger minDivisor, BigInteger maxDivisor) {
+        this(num, minDivisor, maxDivisor, new AtomicBoolean(true));
+    }
+
     private PrimalityTestTask(BigInteger num, BigInteger minDivisor, BigInteger maxDivisor,
                               AtomicBoolean isPrime) {
         this.num = num;
