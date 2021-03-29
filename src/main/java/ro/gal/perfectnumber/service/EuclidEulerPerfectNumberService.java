@@ -57,8 +57,10 @@ public class EuclidEulerPerfectNumberService implements PerfectNumberService {
         List<BigInteger> result = new ArrayList<>();
         long maxPrimeNumberToCheck = (long) Math.ceil((log(2, end) + 1) / 2) + 1;
         for (long p : primeNumberService.generatePrimeNumbers(maxPrimeNumberToCheck)) {
-            if (primeNumberService.isPrimeNumber(TWO.pow((int)p).subtract(ONE))) {
-                BigInteger perfectNumber = TWO.pow((int)p - 1) .multiply(TWO.pow((int)p).subtract(ONE));
+            BigInteger twoPowerP_1 = TWO.pow((int)p - 1);
+            BigInteger twoPowerP = twoPowerP_1.multiply(TWO);
+            if (primeNumberService.isPrimeNumber(twoPowerP.subtract(ONE))) {
+                BigInteger perfectNumber = twoPowerP_1.multiply(twoPowerP.subtract(ONE));
                 if (perfectNumber.compareTo(start) >= 0 && perfectNumber.compareTo(end) < 0) {
                     result.add(perfectNumber);
                 }
