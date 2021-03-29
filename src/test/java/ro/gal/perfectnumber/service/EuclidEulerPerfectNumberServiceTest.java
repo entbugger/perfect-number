@@ -31,7 +31,16 @@ class EuclidEulerPerfectNumberServiceTest {
 
     @Test
     void generatesPerfectNumbers() {
-        List<BigInteger> perfectNumbers = service.generatePerfectNumbers(valueOf(2), valueOf(8129));
-        assertThat(perfectNumbers).containsExactly(valueOf(6L), valueOf(28L), valueOf(496L), valueOf(8128L));
+        List<BigInteger> perfectNumbers = service.generatePerfectNumbers(valueOf(2), new BigInteger("2658455991569831744654692615953842177"));
+        assertThat(perfectNumbers).containsExactly(
+            valueOf(6),
+            valueOf(28),
+            valueOf(496),
+            valueOf(8128),
+            valueOf(33550336),
+            valueOf(8589869056L),
+            valueOf(137438691328L),
+            valueOf(2305843008139952128L),
+            new BigInteger("2658455991569831744654692615953842176"));
     }
 }
