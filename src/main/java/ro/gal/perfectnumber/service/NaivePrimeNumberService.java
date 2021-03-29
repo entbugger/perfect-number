@@ -35,9 +35,9 @@ public class NaivePrimeNumberService implements PrimeNumberService {
         return true;
     }
 
-    public List<Long> generatePrimeNumbers(long max) {
+    public List<Long> generatePrimeNumbers(long min, long max) {
         List<Long> results = new ArrayList<>();
-        for (long i=2; i<max; i++) {
+        for (long i=min; i<max; i++) {
             if (isPrimeNumber(valueOf(i))) {
                 results.add(i);
             }

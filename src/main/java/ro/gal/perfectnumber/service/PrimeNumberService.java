@@ -7,5 +7,5 @@ public interface PrimeNumberService {
 
     boolean isPrimeNumber(BigInteger num);
 
-    List<Long> generatePrimeNumbers(long max);
+    List<Long> generatePrimeNumbers(long min, long max);
 }
